@@ -1,4 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { FaPlay, FaPause } from "react-icons/fa";
+import { GiPreviousButton, GiNextButton } from "react-icons/gi";
+
 import { One, Two, Three } from "./videos";
 import Wrapper from "./style/App";
 
@@ -21,6 +24,10 @@ function App() {
   ]);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    videoRef.current.autoplay = isPlaying;
+  }, [isPlaying]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -71,6 +78,9 @@ function App() {
   return (
     <Wrapper>
       <main>
+        <div className="title">
+          <h1>Video Player</h1>
+        </div>
         <video
           ref={videoRef}
           width={"500px"}
@@ -80,6 +90,7 @@ function App() {
           onTimeUpdate={updateTime}
           playbackRate={playbackSpeed}
           onEnded={handleNextVideo}
+          autoPlay
         />
         <div className="controls">
           <div className="top">
@@ -100,16 +111,16 @@ function App() {
               onClick={handlePreviousVideo}
               disabled={currentVideoIndex === 0}
             >
-              Previous
+              <GiPreviousButton />
             </button>
             <button onClick={handlePlayPause}>
-              {isPlaying ? "Pause" : "Play"}
+              {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
             <button
               onClick={handleNextVideo}
               disabled={currentVideoIndex === playlist.length - 1}
             >
-              Next
+              <GiNextButton />
             </button>
             <div>
               <label>Speed:</label>

@@ -5,12 +5,20 @@ const Wrapper = styled.div`
   padding: 20px;
   > main {
     border: 2px solid red;
+    > .title {
+      background-color: lightgray;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
     > video {
       width: 100%;
       height: 100%;
     }
     > .controls {
       position: absolute;
+      padding: 10px 20px;
       bottom: 0px;
       left: 0;
       background-color: lightgray;
