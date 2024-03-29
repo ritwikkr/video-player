@@ -1,46 +1,31 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  font-family: "poppins";
   display: flex;
-  padding: 20px;
+  background-color: #181818;
+  height: 100vh;
+  color: white;
   > main {
-    border: 2px solid red;
+    width: 80%;
+    padding: 10px 20px;
     > .title {
-      background-color: lightgray;
       position: absolute;
       top: 0;
-      left: 0;
-      width: 100%;
+      left: 2%;
+      width: fit-content;
     }
     > video {
       width: 100%;
-      height: 100%;
-    }
-    > .controls {
-      position: absolute;
-      padding: 10px 20px;
-      bottom: 0px;
-      left: 0;
-      background-color: lightgray;
-      width: 100%;
-      > .top {
-        display: flex;
-        > .time {
-          margin-right: 20px;
-        }
-        > input {
-          flex: 1;
-        }
-      }
-      > .bottom {
-        display: flex;
-        justify-content: center;
-      }
+      height: 88%;
     }
   }
   > aside {
-    border: 2px solid blue;
-    min-width: 300px;
+    width: 20%;
+  }
+
+  @media only screen and (max-width: 850px) {
+    flex-direction: column;
   }
 `;
 
