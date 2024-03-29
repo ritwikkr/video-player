@@ -1,30 +1,66 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 import { FaPause, FaPlay, FaVolumeUp } from "react-icons/fa";
-import Wrapper from "../style/Controls";
+import { MdFullscreen } from "react-icons/md";
+import Wrapper from "../style/ControlsStyle";
+import {
+  setCurrentTime,
+  setIsPlaying,
+  setPlaybackSpeed,
+  setVolume,
+  setCurrentVideoIndex,
+} from "../store/slice/videoPlaylerSlice";
 
 function Controls({
-  isPlaying,
-  handlePlayPause,
-  currentTime,
   duration,
-  handleSeek,
-  handleSpeedChange,
-  playbackSpeed,
-  handlePreviousVideo,
-  handleNextVideo,
-  currentVideoIndex,
-  handleVolumeChange,
   playlistLength,
-  volume,
+  videoRef,
+  handlePlayPause,
+  handleNextVideo,
 }) {
-  const formatTime = (seconds) => {
+  const { isPlaying, currentTime, playbackSpeed, volume, currentVideoIndex } =
+    useSelector((state) => state.videoPlayer);
+  const dispatch = useDispatch();
+
+  function formatTime(seconds) {
     const format = (val) => `0${Math.floor(val)}`.slice(-2);
     const hours = seconds / 3600;
     const minutes = (seconds % 3600) / 60;
 
     return [hours, minutes, seconds % 60].map(format).join(":");
-  };
+  }
+
+  function handleVolumeChange(e) {
+    const newVolume = parseFloat(e.target.value);
+    dispatch(setVolume(newVolume));
+    videoRef.current.volume = newVolume;
+  }
+
+  function handleSeek(e) {
+    const newTime = e.target.value;
+    videoRef.current.currentTime = newTime;
+    dispatch(setCurrentTime(newTime));
+  }
+
+  function handleSpeedChange(speed) {
+    dispatch(setPlaybackSpeed(speed));
+    videoRef.current.playbackRate = speed;
+  }
+
+  function handlePreviousVideo() {
+    if (currentVideoIndex > 0) {
+      dispatch(setCurrentVideoIndex(currentVideoIndex - 1));
+      dispatch(setCurrentTime(0));
+      dispatch(setIsPlaying(true));
+    }
+  }
+
+  function handleFullScreen() {
+    if (videoRef.current.requestFullscreen) {
+      videoRef.current.requestFullscreen();
+    }
+  }
 
   return (
     <Wrapper>
@@ -82,6 +118,11 @@ function Controls({
             <option value={1.5}>1.5x</option>
             <option value={2}>2x</option>
           </select>
+        </div>
+        <div className="full-screen">
+          <button onClick={handleFullScreen}>
+            <MdFullscreen />
+          </button>
         </div>
       </div>
     </Wrapper>

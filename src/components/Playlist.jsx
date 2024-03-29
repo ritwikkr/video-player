@@ -1,16 +1,29 @@
 import React from "react";
-import Wrapper from "../style/Playlist";
+import Wrapper from "../style/PlaylistStyle";
+import {
+  setCurrentTime,
+  setCurrentVideoIndex,
+  setIsPlaying,
+} from "../store/slice/videoPlaylerSlice";
+import { useDispatch } from "react-redux";
 
-function Playlist({ playlist, currentVideoIndex, handlePlayVideo }) {
+function Playlist({ playlist, currentVideoIndex }) {
+  const dispatch = useDispatch();
   const handleDragStart = (e, index) => {
     e.dataTransfer.setData("index", index.toString());
   };
 
-  const handleDragOver = (e) => {
+  function handleDragOver(e) {
     e.preventDefault();
-  };
+  }
 
-  const handleDrop = (e, targetIndex) => {
+  function handlePlayVideo(index) {
+    dispatch(setCurrentVideoIndex(index));
+    dispatch(setCurrentTime(0));
+    dispatch(setIsPlaying(true));
+  }
+
+  function handleDrop(e, targetIndex) {
     e.preventDefault();
     const draggedIndex = parseInt(e.dataTransfer.getData("index"));
     if (draggedIndex !== targetIndex) {
@@ -19,7 +32,7 @@ function Playlist({ playlist, currentVideoIndex, handlePlayVideo }) {
       newPlaylist.splice(targetIndex, 0, draggedItem);
       handlePlayVideo(targetIndex);
     }
-  };
+  }
 
   return (
     <Wrapper>

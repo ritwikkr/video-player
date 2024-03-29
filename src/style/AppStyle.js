@@ -6,18 +6,25 @@ const Wrapper = styled.div`
   background-color: #181818;
   height: 100vh;
   color: white;
+  overflow: hidden;
   > main {
     width: 80%;
+    display: flex;
+    flex-direction: column;
     padding: 10px 20px;
     > .title {
-      position: absolute;
-      top: 0;
-      left: 2%;
-      width: fit-content;
+      height: 5%;
     }
-    > video {
-      width: 100%;
-      height: 88%;
+    > .video {
+      height: 80%;
+      > video {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    > .controls {
+      height: 15%;
     }
   }
   > aside {

@@ -1,15 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: fixed;
-  padding: 10px 20px;
-  bottom: 0px;
-  height: 12%;
-  left: 2%;
-  opacity: 0.8;
-  width: 75.5%;
   > .top {
     display: flex;
+    height: 5%;
     > .time {
       margin-right: 20px;
     }
@@ -18,17 +12,17 @@ const Wrapper = styled.div`
     }
   }
   > .bottom {
+    height: 10%;
     display: flex;
+    margin-top: 10px;
     justify-content: space-between;
+    align-items: center;
     > .volume {
       display: flex;
       align-items: center;
       > label {
         margin-right: 5px;
         height: fit-content;
-      }
-      > input {
-        background-color: red;
       }
     }
     > nav {
@@ -55,6 +49,23 @@ const Wrapper = styled.div`
     > .speed {
       display: flex;
       align-items: center;
+      > label {
+        margin-right: 5px;
+      }
+      > select {
+        border-radius: 10px;
+        padding-left: 5px;
+      }
+    }
+    > .full-screen {
+      height: 5%;
+      > button {
+        cursor: pointer;
+        font-size: 22px;
+        color: white;
+        background: transparent;
+        border: none;
+      }
     }
   }
 `;
