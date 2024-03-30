@@ -1,7 +1,6 @@
 // src/features/videoPlayer/videoPlayerSlice.js
 
 import { createSlice } from "@reduxjs/toolkit";
-import { One, Two, Three, Four, Five } from "../../videos";
 
 const initialState = {
   isPlaying: false,
@@ -9,11 +8,26 @@ const initialState = {
   playbackSpeed: 1,
   volume: 1,
   playlist: [
-    { url: One, title: "Video 1" },
-    { url: Two, title: "Video 2" },
-    { url: Three, title: "Video 3" },
-    { url: Four, title: "Video 4" },
-    { url: Five, title: "Video 5" },
+    {
+      url: "https://ritwik-video-player.s3.ap-south-1.amazonaws.com/One.mp4",
+      title: "Video 1",
+    },
+    {
+      url: "https://ritwik-video-player.s3.ap-south-1.amazonaws.com/Two.mp4",
+      title: "Video 2",
+    },
+    {
+      url: "https://ritwik-video-player.s3.ap-south-1.amazonaws.com/Three.mp4",
+      title: "Video 3",
+    },
+    {
+      url: "https://ritwik-video-player.s3.ap-south-1.amazonaws.com/Four.mp4",
+      title: "Video 4",
+    },
+    {
+      url: "https://ritwik-video-player.s3.ap-south-1.amazonaws.com/Five.mp4",
+      title: "Video 5",
+    },
   ],
   currentVideoIndex: 0,
 };

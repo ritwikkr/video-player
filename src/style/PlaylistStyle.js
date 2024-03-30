@@ -38,9 +38,10 @@ const Wrapper = styled.div`
       }
     }
     > .titles {
+      width: 100%;
       > button {
         margin-bottom: 10px;
-        width: 200px;
+        width: 100%;
         height: 100px;
         border-radius: 3px;
         cursor: pointer;
@@ -82,6 +83,12 @@ const Wrapper = styled.div`
         > input {
           background-color: transparent;
           color: white;
+        }
+      }
+      > .titles {
+        display: flex;
+        > button {
+          height: 100%;
         }
       }
       &::-webkit-scrollbar {
