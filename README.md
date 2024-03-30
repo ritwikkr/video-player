@@ -14,6 +14,7 @@ The Video Player App is a React application that allows users to play videos, co
 - Full-screen mode.
 - Display of current playback time and total duration.
 - Keyboard shortcuts for common actions (Space for play/pause, Arrow keys for seeking and volume control).
+- Stored videos in AWS.
 
 ## Technologies Used
 
