@@ -57,23 +57,25 @@ function Playlist({ playlist, currentVideoIndex }) {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        {filteredPlaylist.length > 0 ? (
-          filteredPlaylist.map((video, index) => (
-            <button
-              key={index}
-              draggable
-              onDragStart={(e) => handleDragStart(e, index)}
-              onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, index)}
-              onClick={() => handlePlayVideo(index)}
-              className={currentVideoIndex === index ? "active" : ""}
-            >
-              {video.title}
-            </button>
-          ))
-        ) : (
-          <div>No titles found</div>
-        )}
+        <div className="titles">
+          {filteredPlaylist.length > 0 ? (
+            filteredPlaylist.map((video, index) => (
+              <button
+                key={index}
+                draggable
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragOver={handleDragOver}
+                onDrop={(e) => handleDrop(e, index)}
+                onClick={() => handlePlayVideo(index)}
+                className={currentVideoIndex === index ? "active" : ""}
+              >
+                {video.title}
+              </button>
+            ))
+          ) : (
+            <div>No titles found</div>
+          )}
+        </div>
       </div>
     </Wrapper>
   );

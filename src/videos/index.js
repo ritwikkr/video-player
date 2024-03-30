@@ -2,5 +2,6 @@ import One from "./One.mp4";
 import Two from "./Two.mp4";
 import Three from "./Three.mp4";
 import Four from "./Four.mp4";
+import Five from "./Five.mp4";
 
-export { One, Two, Three, Four };
+export { One, Two, Three, Four, Five };

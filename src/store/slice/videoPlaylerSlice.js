@@ -1,7 +1,7 @@
 // src/features/videoPlayer/videoPlayerSlice.js
 
 import { createSlice } from "@reduxjs/toolkit";
-import { One, Two, Three, Four } from "../../videos";
+import { One, Two, Three, Four, Five } from "../../videos";
 
 const initialState = {
   isPlaying: false,
@@ -13,10 +13,7 @@ const initialState = {
     { url: Two, title: "Video 2" },
     { url: Three, title: "Video 3" },
     { url: Four, title: "Video 4" },
-    { url: One, title: "Video 1" },
-    { url: Two, title: "Video 2" },
-    { url: Three, title: "Video 3" },
-    { url: Four, title: "Video 4" },
+    { url: Five, title: "Video 5" },
   ],
   currentVideoIndex: 0,
 };

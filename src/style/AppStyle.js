@@ -38,13 +38,14 @@ const Wrapper = styled.div`
       width: 100%;
       height: 70%;
     }
+    > aside {
+      width: 100%;
+    }
   }
 
   @media only screen and (max-width: 400px) {
-    background-color: lightblue;
     > main {
-      background-color: red;
-      height: 80%;
+      height: 70%;
     }
   }
 `;

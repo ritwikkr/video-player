@@ -82,8 +82,6 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 400px) {
-    background-color: lavender;
-    height: 100%;
     > .bottom {
       > nav {
         > button {

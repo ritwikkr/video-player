@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   padding: 10px;
   flex-direction: column;
   > .title {
-    background-color: black;
+    background-color: #181818;
     > h1 {
       font-weight: 500;
       display: flex;
@@ -37,11 +37,14 @@ const Wrapper = styled.div`
         border: none;
       }
     }
-    > button {
-      padding: 4vw;
-      border-radius: 3px;
-      cursor: pointer;
-      margin-right: 10px;
+    > .titles {
+      > button {
+        margin-bottom: 10px;
+        width: 200px;
+        height: 100px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
     }
     &::-webkit-scrollbar {
       width: 5px;
@@ -59,7 +62,6 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 850px) {
     width: 100vw;
     height: 30%;
-    border: 2px solid #ccc;
     position: relative;
     > .title {
       text-align: left;
@@ -89,9 +91,8 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 400px) {
-    background-color: green;
-    height: 20%;
-    margin-top: 100px;
+    position: absolute;
+    height: 30%;
   }
 `;
 
