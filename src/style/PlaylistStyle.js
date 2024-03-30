@@ -5,9 +5,7 @@ const Wrapper = styled.div`
   padding: 10px;
   flex-direction: column;
   > .title {
-    z-index: 1;
     background-color: black;
-    width: 100%;
     > h1 {
       font-weight: 500;
       display: flex;
@@ -23,6 +21,22 @@ const Wrapper = styled.div`
     gap: 10px;
     overflow-y: scroll;
     height: 90vh;
+    > .search {
+      display: flex;
+      padding: 0 5px;
+      align-items: center;
+      background-color: white;
+      > .search-icon {
+        color: black;
+      }
+      > input {
+        width: 90%;
+        height: 30px;
+        outline: none;
+        padding-left: 5px;
+        border: none;
+      }
+    }
     > button {
       padding: 4vw;
       border-radius: 3px;
@@ -44,10 +58,40 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: 850px) {
     width: 100vw;
-    overflow-x: scroll;
+    height: 30%;
+    border: 2px solid #ccc;
+    position: relative;
+    > .title {
+      text-align: left;
+      width: fit-content;
+    }
     > .playlist-container {
       flex-direction: row;
+      > .search {
+        position: absolute;
+        top: 8%;
+        right: 0%;
+        background-color: transparent;
+        > .search-icon {
+          color: white;
+          margin-top: 8px;
+        }
+        border-bottom: 2px solid white;
+        > input {
+          background-color: transparent;
+          color: white;
+        }
+      }
+      &::-webkit-scrollbar {
+        height: 5px;
+      }
     }
+  }
+
+  @media only screen and (max-width: 400px) {
+    background-color: green;
+    height: 20%;
+    margin-top: 100px;
   }
 `;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GiNextButton, GiPreviousButton } from "react-icons/gi";
 import { FaPause, FaPlay, FaVolumeUp } from "react-icons/fa";
@@ -31,17 +31,23 @@ function Controls({
     return [hours, minutes, seconds % 60].map(format).join(":");
   }
 
-  function handleVolumeChange(e) {
-    const newVolume = parseFloat(e.target.value);
-    dispatch(setVolume(newVolume));
-    videoRef.current.volume = newVolume;
-  }
+  const handleVolumeChange = useCallback(
+    (volume) => {
+      const newVolume = Math.min(Math.max(parseFloat(volume), 0), 1);
+      dispatch(setVolume(newVolume));
+      videoRef.current.volume = newVolume;
+    },
+    [dispatch, videoRef]
+  );
 
-  function handleSeek(e) {
-    const newTime = e.target.value;
-    videoRef.current.currentTime = newTime;
-    dispatch(setCurrentTime(newTime));
-  }
+  const handleSeek = useCallback(
+    (time) => {
+      const newTime = Math.max(0, Math.min(time, duration));
+      videoRef.current.currentTime = newTime;
+      dispatch(setCurrentTime(newTime));
+    },
+    [dispatch, videoRef, duration]
+  );
 
   function handleSpeedChange(speed) {
     dispatch(setPlaybackSpeed(speed));
@@ -62,6 +68,36 @@ function Controls({
     }
   }
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      switch (event.key) {
+        case " ":
+          handlePlayPause();
+          break;
+        case "ArrowUp":
+          if (volume < 1) handleVolumeChange(volume + 0.1);
+          break;
+        case "ArrowDown":
+          if (volume > 0) handleVolumeChange(volume - 0.1);
+          break;
+        case "ArrowLeft":
+          handleSeek(currentTime - 1);
+          break;
+        case "ArrowRight":
+          handleSeek(currentTime + 1);
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentTime, volume, handlePlayPause, handleSeek, handleVolumeChange]);
+
   return (
     <Wrapper>
       <div className="top">
@@ -73,7 +109,7 @@ function Controls({
           min="0"
           max={duration}
           value={currentTime}
-          onChange={handleSeek}
+          onChange={(e) => handleSeek(e.target.value)}
         />
       </div>
       <div className="bottom">
@@ -87,7 +123,7 @@ function Controls({
             max="1"
             step="0.001"
             value={volume}
-            onChange={handleVolumeChange}
+            onChange={(e) => handleVolumeChange(e.target.value)}
           />
         </div>
         <nav>

@@ -24,6 +24,9 @@ const Wrapper = styled.div`
         margin-right: 5px;
         height: fit-content;
       }
+      > input {
+        width: 100%;
+      }
     }
     > nav {
       width: 300px;
@@ -65,6 +68,29 @@ const Wrapper = styled.div`
         color: white;
         background: transparent;
         border: none;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 660px) {
+    > .bottom {
+      > nav {
+        width: 200px;
+        margin: 0 10px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    background-color: lavender;
+    height: 100%;
+    > .bottom {
+      > nav {
+        > button {
+          width: 30px;
+          height: 30px;
+          font-size: 15px;
+        }
       }
     }
   }

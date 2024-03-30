@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     padding: 10px 20px;
     > .title {
+      z-index: 1;
       height: 5%;
     }
     > .video {
@@ -33,6 +34,18 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: 850px) {
     flex-direction: column;
+    > main {
+      width: 100%;
+      height: 70%;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    background-color: lightblue;
+    > main {
+      background-color: red;
+      height: 80%;
+    }
   }
 `;
 
